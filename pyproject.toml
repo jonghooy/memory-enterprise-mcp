@@ -1,0 +1,84 @@
+[tool.poetry]
+name = "memory-agent-enterprise"
+version = "0.1.0"
+description = "Enterprise Memory Agent with MCP support for unified knowledge management"
+authors = ["Your Team <team@example.com>"]
+readme = "README.md"
+packages = [{include = "src"}]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.13"
+fastapi = "^0.109.0"
+uvicorn = {extras = ["standard"], version = "^0.27.0"}
+pydantic = "^2.5.3"
+pydantic-settings = "^2.1.0"
+llama-index-core = "^0.11.23"
+llama-index-vector-stores-qdrant = "^0.3.0"
+llama-index-vector-stores-pinecone = "^0.2.0"
+llama-index-readers-google = "^0.4.0"
+llama-index-embeddings-huggingface = "^0.3.0"
+llama-index-llms-openai = "^0.2.0"
+openai = "^1.0.0"
+pinecone-client = "^3.0.0"
+qdrant-client = "^1.7.0"
+sqlalchemy = "^2.0.25"
+alembic = "^1.13.1"
+asyncpg = "^0.29.0"
+psycopg2-binary = "^2.9.9"
+redis = "^5.0.1"
+celery = {extras = ["redis"], version = "^5.3.4"}
+authlib = "^1.3.0"
+httpx = "^0.26.0"
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+python-multipart = "^0.0.6"
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+google-api-python-client = "^2.114.0"
+google-auth-httplib2 = "^0.2.0"
+google-auth-oauthlib = "^1.2.0"
+notion-client = "^2.2.0"
+tenacity = "^8.2.3"
+structlog = "^24.1.0"
+prometheus-client = "^0.19.0"
+sentence-transformers = "^5.1.0"
+prometheus-fastapi-instrumentator = "^7.1.0"
+email-validator = "^2.3.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.4"
+pytest-asyncio = "^0.21.1"
+pytest-cov = "^4.1.0"
+pytest-env = "^1.1.3"
+pytest-mock = "^3.12.0"
+black = "^23.12.1"
+ruff = "^0.1.11"
+mypy = "^1.8.0"
+ipython = "^8.20.0"
+pre-commit = "^3.6.0"
+flower = "^2.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 100
+target-version = ['py311']
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I", "N", "W", "B", "C90", "UP", "S", "T", "ANN", "ASYNC"]
+ignore = ["ANN101", "ANN102", "S101"]
+target-version = "py311"
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-ra -q --strict-markers --cov=src --cov-report=html --cov-report=term"
+asyncio_mode = "auto"

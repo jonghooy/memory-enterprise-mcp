@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "memory-agent": {
+      "command": "python",
+      "args": [
+        "-m",
+        "src.mcp.claude_server"
+      ],
+      "cwd": "/home/jonghooy/work/rag-mcp",
+      "env": {
+        "PYTHONPATH": "/home/jonghooy/work/rag-mcp",
+        "DATABASE_URL": "postgresql+asyncpg://postgres:password@localhost:5432/memory_agent",
+        "REDIS_URL": "redis://localhost:6380/0",
+        "QDRANT_HOST": "localhost",
+        "QDRANT_PORT": "6333",
+        "VECTOR_STORE_TYPE": "qdrant",
+        "EMBEDDING_MODEL": "BAAI/bge-m3"
+      }
+    }
+  }
+}
