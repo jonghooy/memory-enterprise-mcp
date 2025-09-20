@@ -12,6 +12,16 @@ const nextConfig = {
   // Other optimizations
   reactStrictMode: true,
   swcMinify: true,
+
+  // API proxy to backend MCP server
+  async rewrites() {
+    return [
+      {
+        source: '/api/knowledge/:path*',
+        destination: 'http://localhost:8005/api/knowledge/:path*',
+      },
+    ]
+  },
 };
 
 export default nextConfig;

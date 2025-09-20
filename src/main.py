@@ -9,7 +9,7 @@ from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from prometheus_fastapi_instrumentator import Instrumentator
 
 from src.core.config import settings
-from src.api import health, auth, mcp_mock
+from src.api import health, auth, mcp_mock, knowledge
 # Temporarily disable memory API that depends on services
 # from src.api import memory
 # Temporarily comment out LlamaIndex-dependent imports
@@ -93,6 +93,10 @@ app.include_router(sse_server.router, tags=["mcp-sse"])
 # Include JSON-RPC over SSE router
 from src.mcp import jsonrpc_sse_server
 app.include_router(jsonrpc_sse_server.router, tags=["mcp-jsonrpc-sse"])
+
+# Include knowledge router
+app.include_router(knowledge.router, tags=["knowledge"])
+
 # Temporarily disabled until LlamaIndex issues are resolved
 # app.include_router(memory.router, prefix="/api/v1/memories", tags=["memories"])
 
